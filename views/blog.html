@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Blog Page</title>
+  </head>
+  <body>
+
+    <div class="container">
+        <br><br>
+        <h1>Blog Page</h1>  
+
+        <a href="/blog/post_form">
+        <button type="button" class="btn btn-primary">Create new post</button>
+        </a>
+
+        % if result:
+          <table class="table table-borderer">
+            <thead>
+              <tr>
+                <th scope="col">id</th>
+                <th scope="col">title</th>
+                <th scope="col">edit</th>
+                <th scope="col">delete</th>
+              </tr>
+            </thead>
+            % for rows in result:
+              <tr>
+                <td>{{ rows[0] }}</td>
+                <td><a href="/blog/{{ rows[0] }}">{{ rows[1] }}</a></td>
+                <td><a href="/blog/post_form/{{ rows[0] }}">edit</a></td>
+                <td><a href="/blog/post_delete/{{ rows[0] }}">delete</a></td>
+              </tr>
+            % end
+          </table>
+        % else:
+          <h5>Your blog is empty. Please, write first record!</h5>
+        % end
+
+        <h4><a href="/">Ruturn to Index</a></h4>
+    </div>
+    
+  </body>
+</html>
